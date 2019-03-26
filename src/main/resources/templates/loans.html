@@ -1,0 +1,31 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Loan List</title>
+</head>
+<body>
+<h1>Loan List</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Issue amount</th>
+        <th>Return amount</th>
+        <th>Issue date</th>
+        <th>Return date</th>
+        <th>Customer</th>
+        <th>Lending company</th>
+    </tr>
+    <tr th:each="loan : ${loans}">
+        <td th:text="${loan.loanId}"></td>
+        <td th:text="${loan.issueAmount}"></td>
+        <td th:text="${loan.returnAmount}"></td>
+        <td th:text="${loan.issueDate}"></td>
+        <td th:text="${loan.returnDate}"></td>
+        <td th:text="${loan.customer.getId()}"></td>
+        <td th:text="${loan.lendingCompany.getId()}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 package io.codelex.p2p.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,13 +18,13 @@ public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long LoanId;
-    @NotEmpty
+    @Column(nullable = false)
     private BigDecimal issueAmount;
-    @NotEmpty
+    @Column(nullable = false)
     private BigDecimal returnAmount;
-    @NotEmpty
+    @Column(nullable = false)
     private LocalDate issueDate;
-    @NotEmpty
+    @Column(nullable = false)
     private LocalDate returnDate;
     @OneToOne
     private Customer customer;
@@ -32,6 +33,25 @@ public class Loan {
     @OneToOne
     private LendingCompany lendingCompany;
     private boolean isItReturned;
+
+    public Loan() {
+    }
+
+    public Loan(@NotEmpty BigDecimal issueAmount,
+                @NotEmpty BigDecimal returnAmount,
+                @NotEmpty LocalDate issueDate,
+                @NotEmpty LocalDate returnDate,
+                @Valid Customer customer,
+                @NotNull @Valid LendingCompany lendingCompany,
+                boolean isItReturned) {
+        this.issueAmount = issueAmount;
+        this.returnAmount = returnAmount;
+        this.issueDate = issueDate;
+        this.returnDate = returnDate;
+        this.customer = customer;
+        this.lendingCompany = lendingCompany;
+        this.isItReturned = isItReturned;
+    }
 
 
     public Long getLoanId() {

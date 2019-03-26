@@ -8,13 +8,17 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class HTwoRepositoryService implements Service {
+public class RepositoryService implements Service {
     private CustomerRepository customerRepository;
     private LoanRepository loanRepository;
+    private LendingCompanyRepository lendingCompanyRepository;
 
-    public HTwoRepositoryService(CustomerRepository customerRepository, LoanRepository loanRepository) {
+    public RepositoryService(CustomerRepository customerRepository,
+                             LoanRepository loanRepository,
+                             LendingCompanyRepository lendingCompanyRepository) {
         this.customerRepository = customerRepository;
         this.loanRepository = loanRepository;
+        this.lendingCompanyRepository = lendingCompanyRepository;
     }
 
 

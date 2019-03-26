@@ -3,17 +3,21 @@ import io.codelex.p2p.api.AddLoanRequest;
 import io.codelex.p2p.model.Loan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@org.springframework.stereotype.Controller
 public class Controller {
     private Service service;
-    private RequestValidator validator= new RequestValidator();
+    private RequestValidator validator;
 
-    public Controller(Service service) {
+    public Controller(Service service, RequestValidator validator) {
         this.service = service;
+        this.validator = validator;
     }
     @PutMapping("/addLoan")
     public ResponseEntity<Loan> addLoan(@RequestBody AddLoanRequest request) {
@@ -22,6 +26,9 @@ public class Controller {
         }else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-    
-    
+    @RequestMapping("/loans")
+    public String getLoans(Model model){
+        model.addAttribute("loans",service.findAllLoans());
+        return "loans";
+    }
 }

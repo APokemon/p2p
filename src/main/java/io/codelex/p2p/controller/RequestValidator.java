@@ -1,7 +1,9 @@
 package io.codelex.p2p.controller;
 
 import io.codelex.p2p.api.AddLoanRequest;
+import org.springframework.stereotype.Component;
 
+@Component
 class RequestValidator {
     boolean IsAddLoanRequestValid(AddLoanRequest request) {
         if (request.getReturnAmount().compareTo(request.getIssueAmount()) < 0) {

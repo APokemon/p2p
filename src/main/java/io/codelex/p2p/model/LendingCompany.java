@@ -13,18 +13,27 @@ import java.util.Set;
 public class LendingCompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long lendingCompanyId;
     private String companyName;
     @OneToMany
     private Set<Loan> loans;
     private BigDecimal funds;
 
+    public LendingCompany() {
+    }
+
+    public LendingCompany(String companyName, Set<Loan> loans, BigDecimal funds) {
+        this.companyName = companyName;
+        this.loans = loans;
+        this.funds = funds;
+    }
+
     public Long getId() {
-        return id;
+        return lendingCompanyId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.lendingCompanyId = id;
     }
 
     public String getCompanyName() {
@@ -67,7 +76,7 @@ public class LendingCompany {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("LendingCompany{");
-        sb.append("id=").append(id);
+        sb.append("id=").append(lendingCompanyId);
         sb.append(", companyName='").append(companyName).append('\'');
         sb.append(", loans=").append(loans);
         sb.append(", funds=").append(funds);

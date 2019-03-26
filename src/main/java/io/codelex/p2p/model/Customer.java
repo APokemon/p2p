@@ -12,12 +12,15 @@ import java.util.Set;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long customerId;
     private String firstName;
     private String lastName;
     private Long funds;
     @OneToMany
     private Set<Loan> loans;
+
+    public Customer() {
+    }
 
     public Customer(Long id, String firstName, String lastName, Set<Loan> loans) {
         this.firstName = firstName;
@@ -27,7 +30,7 @@ public class Customer {
     }
 
     public Long getId() {
-        return Id;
+        return customerId;
     }
 
     public String getFirstName() {
@@ -72,7 +75,7 @@ public class Customer {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Customer{");
-        sb.append("Id=").append(Id);
+        sb.append("Id=").append(customerId);
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');
         sb.append(", funds=").append(funds);
