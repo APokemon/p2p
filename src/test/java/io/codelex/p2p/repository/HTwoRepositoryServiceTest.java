@@ -6,6 +6,7 @@ import io.codelex.p2p.model.LendingCompany;
 import io.codelex.p2p.model.Loan;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -17,40 +18,9 @@ public class HTwoRepositoryServiceTest {
     CustomerRepository customerRepository = Mockito.mock(CustomerRepository.class);
     LoanRepository loanRepository = Mockito.mock(LoanRepository.class);
     LendingCompanyRepository lendingCompanyRepository = Mockito.mock(LendingCompanyRepository.class);
-    RepositoryService tripRecordRepository = new RepositoryService(customerRepository,loanRepository,lendingCompanyRepository);
-    
-    @Test
-    void should_save_Loan(){
-        //given
-        AddLoanRequest addLoanRequest = new AddLoanRequest(
-                new BigDecimal(1000),
-                new BigDecimal(1200),
-                LocalDate.of(2019,4,1),
-                LocalDate.of(2019,4,1).plusDays(14),
-                createCustomer(),
-                createLendingCompany()
-        );
-        
-    }
-    
-    Customer createCustomer(){
-        Set<Loan> loans= new HashSet<>();
-        return new Customer(
-                1L,
-                "Andris",
-                "Kivics",
-                loans
-        );
-    }
-    LendingCompany createLendingCompany(){
-        Set<Loan> loans= new HashSet<>();
-        
-        return new LendingCompany(
-                "Onzaem",
-                loans,
-                new BigDecimal(0)
-        );
-    }
+    PasswordEncoder passwordEncoder = Mockito.mock(PasswordEncoder.class);
+    RepositoryService tripRecordRepository = new RepositoryService(customerRepository,loanRepository,lendingCompanyRepository,passwordEncoder);
+
 
 
 }

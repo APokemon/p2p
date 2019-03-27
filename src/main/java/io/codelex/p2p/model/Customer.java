@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -13,8 +14,8 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerId;
-    private String firstName;
-    private String lastName;
+    private String email;
+    private String password;
     private Long funds;
     @OneToMany
     private Set<Loan> loans;
@@ -22,23 +23,44 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Long id, String firstName, String lastName, Set<Loan> loans) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.loans = loans;
+    public Customer(String email,
+                    String password) {
+        this.email=email;
+        this.password=password;
+        this.loans = new HashSet<>();
         this.funds = 0L;
     }
 
-    public Long getId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Long getFunds() {
+        return funds;
+    }
+
+    public void setFunds(Long funds) {
+        this.funds = funds;
     }
 
     public Set<Loan> getLoans() {
@@ -47,40 +69,5 @@ public class Customer {
 
     public void setLoans(Set<Loan> loans) {
         this.loans = loans;
-    }
-
-    public Loan addLoan(Loan loan) {
-        this.loans.add(loan);
-        return loan;
-    }
-
-    public Long addFunds(Long funds) {
-        this.funds += funds;
-        return funds;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return getId().equals(customer.getId());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Customer{");
-        sb.append("Id=").append(customerId);
-        sb.append(", firstName='").append(firstName).append('\'');
-        sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", funds=").append(funds);
-        sb.append(", loans=").append(loans);
-        sb.append('}');
-        return sb.toString();
     }
 }

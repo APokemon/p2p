@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 class RequestValidator {
-    boolean IsAddLoanRequestValid(AddLoanRequest request) {
+    boolean isAddLoanRequestValid(AddLoanRequest request) {
         if (request.getReturnAmount().compareTo(request.getIssueAmount()) < 0) {
             return false;
         }

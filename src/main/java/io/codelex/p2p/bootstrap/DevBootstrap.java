@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-
+/*
 @Component
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
     private LoanRepository loanRepository;
@@ -69,4 +69,4 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
                 new BigDecimal(0)
         );
     }
-}
+}*/

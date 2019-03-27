@@ -17,7 +17,7 @@ import java.util.Objects;
 public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long LoanId;
+    private Long loanId;
     @Column(nullable = false)
     private BigDecimal issueAmount;
     @Column(nullable = false)
@@ -55,11 +55,11 @@ public class Loan {
 
 
     public Long getLoanId() {
-        return LoanId;
+        return loanId;
     }
 
     public void setLoanId(Long loanId) {
-        LoanId = loanId;
+        loanId = loanId;
     }
 
     public BigDecimal getIssueAmount() {
